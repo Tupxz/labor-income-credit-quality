@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caso 3 — Avance del equipo</title>
+<style>
+  :root {
+    --azul: #1d3557;
+    --azul-claro: #457b9d;
+    --verde: #2a9d8f;
+    --amarillo: #e9c46a;
+    --rojo: #e76f51;
+    --gris: #f1f1f4;
+    --texto: #22223b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    background: var(--gris);
+    color: var(--texto);
+    line-height: 1.55;
+  }
+  header {
+    background: linear-gradient(135deg, var(--azul), var(--azul-claro));
+    color: white;
+    padding: 2.5rem 1.5rem 2rem;
+    text-align: center;
+  }
+  header h1 { margin: 0 0 0.4rem; font-size: 1.6rem; }
+  header p { margin: 0.2rem 0; opacity: 0.9; font-size: 0.95rem; }
+  .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 999px;
+    padding: 0.25rem 0.9rem;
+    font-size: 0.8rem;
+    margin-top: 0.6rem;
+  }
+  main {
+    max-width: 980px;
+    margin: -1.5rem auto 3rem;
+    padding: 0 1rem;
+  }
+  section {
+    background: white;
+    border-radius: 14px;
+    padding: 1.5rem 1.8rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  }
+  h2 {
+    color: var(--azul);
+    font-size: 1.15rem;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  h2 .num {
+    background: var(--azul);
+    color: white;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .card {
+    border: 1px solid #e5e5ea;
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  .card h3 { margin: 0 0 0.4rem; font-size: 0.95rem; color: var(--azul-claro); }
+  .card code { font-size: 0.78rem; background: var(--gris); padding: 0.1rem 0.3rem; border-radius: 4px; }
+  ul.status-list { list-style: none; margin: 0; padding: 0; }
+  ul.status-list li {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed #e5e5ea;
+    font-size: 0.93rem;
+  }
+  ul.status-list li:last-child { border-bottom: none; }
+  .tag {
+    flex-shrink: 0;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    color: white;
+    white-space: nowrap;
+    margin-top: 0.1rem;
+  }
+  .tag.ok { background: var(--verde); }
+  .tag.warn { background: var(--amarillo); color: #3a2e00; }
+  .tag.pend { background: var(--rojo); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+  th, td { text-align: left; padding: 0.5rem 0.6rem; border-bottom: 1px solid #eee; }
+  th { color: var(--azul); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.02em; }
+  .progress-track {
+    background: #e5e5ea;
+    border-radius: 999px;
+    height: 10px;
+    overflow: hidden;
+    margin: 0.4rem 0 0.2rem;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--verde), var(--azul-claro));
+  }
+  .progress-label { font-size: 0.78rem; color: #555; display: flex; justify-content: space-between; }
+  pre {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    padding: 1rem;
+    border-radius: 10px;
+    overflow-x: auto;
+    font-size: 0.82rem;
+  }
+  .steps { counter-reset: step; list-style: none; padding: 0; }
+  .steps li {
+    position: relative;
+    padding: 0.6rem 0 0.6rem 2.4rem;
+    font-size: 0.93rem;
+  }
+  .steps li::before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0.55rem;
+    width: 1.6rem;
+    height: 1.6rem;
+    background: var(--azul-claro);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  footer {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #777;
+    padding: 1.5rem;
+  }
+  a { color: var(--azul-claro); }
+  .note {
+    background: #fff8e6;
+    border: 1px solid var(--amarillo);
+    border-radius: 8px;
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+    margin-top: 0.8rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Caso 3 — Desempleo, ingreso laboral y calidad de cartera</h1>
+  <p>Economía Financiera y Bancaria · Universidad EAFIT</p>
+  <span class="badge">Actualizado: 1 de septiembre de 2026 — Semana 2 en curso</span>
+</header>
+
+<main>
+
+  <section>
+    <h2><span class="num">✓</span> Resumen ejecutivo</h2>
+    <div class="progress-label"><span>Avance general del pre-plan (5 semanas)</span><span>~40%</span></div>
+    <div class="progress-track"><div class="progress-fill" style="width:40%"></div></div>
+    <p style="margin-top:1rem;">
+      Ya tenemos <strong>datos crudos descargados</strong> de las 3 fuentes principales (SFC, BanRep, DANE-GEIH)
+      y <strong>3 scripts de limpieza</strong> que arman un panel mensual consolidado
+      (<code>data/processed/panel_calidad_cartera.csv</code>), listo para empezar a explorar y
+      luego especificar el modelo. Faltan algunas variables (informalidad, ingreso real, IPC) y
+      extender la ventana de la SFC a 2024-2025.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="num">1</span> ¿Qué ya está hecho?</h2>
+    <ul class="status-list">
+      <li><span class="tag ok">OK</span> Pre-plan de trabajo completo: pregunta, hipótesis (H1/H2/H3), marco teórico-regulatorio a revisar, cronograma de 5 semanas — ver <code>PLAN_DE_TRABAJO.md</code>.</li>
+      <li><span class="tag ok">OK</span> Descarga de datos crudos: SFC (calidad de cartera por modalidad), BanRep (TPM, DTF, IBR, TRM, M1/M2/M3 vía API SDMX) y DANE-GEIH (anexos mensuales 2015-2025) — <code>data/raw/</code>.</li>
+      <li><span class="tag ok">OK</span> <code>src/procesar_banrep_sdmx.py</code> → convierte los XML de BanRep en <code>banrep_mensual.csv</code> (132 meses, 2015-2025).</li>
+      <li><span class="tag ok">OK</span> <code>src/procesar_sfc_calidad_cartera.py</code> → ICV por segmento de cartera (total, comercial, consumo, vivienda, microcrédito) en <code>sfc_icv_mensual.csv</code> (2011-2023).</li>
+      <li><span class="tag ok">OK</span> <code>src/procesar_geih.py</code> → tasa de desempleo (TD), TGP y TO nacional en <code>dane_mercado_laboral_mensual.csv</code> (2001-2025, con hueco esperado en pandemia 2020-03 a 2020-07).</li>
+      <li><span class="tag ok">OK</span> <code>src/consolidar_panel.py</code> → panel final <strong>segmento × mes</strong>: <code>data/processed/panel_calidad_cartera.csv</code> (540 filas, 2015-01 a 2023-12).</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="num">2</span> ¿Qué falta? (por prioridad)</h2>
+    <ul class="status-list">
+      <li><span class="tag pend">Pendiente</span> <strong>Actualizar SFC a 2024-2025</strong>: el Excel descargado solo llega a dic-2023. Buscar "Sistema financiero colombiano en cifras" en la web de la SFC mes a mes, o el reporte más reciente equivalente. <em>(Bloquea usar toda la ventana de BanRep/DANE, que ya llegan hasta dic-2025).</em></li>
+      <li><span class="tag pend">Pendiente</span> <strong>Informalidad</strong> (DANE, anexos GEIHEISS) — no descargada todavía.</li>
+      <li><span class="tag pend">Pendiente</span> <strong>Ingreso laboral real</strong> — no está en el anexo GEIH estándar; falta ubicar la fuente (posiblemente boletín de mercado laboral por posición ocupacional, o Empalme de series de ingresos del DANE) y el <strong>IPC</strong> para deflactar.</li>
+      <li><span class="tag warn">En duda</span> Verificar la escala/unidad de M1/M2/M3 de BanRep (no queda 100% claro con el atributo <code>UNIT_MULT</code> del XML).</li>
+      <li><span class="tag pend">Pendiente</span> <strong>Estadística descriptiva y gráficos exploratorios</strong> del panel consolidado (NPL por segmento vs. desempleo/TPM) — siguiente paso natural antes de pasar a modelar (hito de Semana 2).</li>
+      <li><span class="tag pend">Pendiente</span> <strong>Semana 3</strong>: especificar y estimar el modelo base (panel con efectos fijos por segmento + interacción desempleo×TPM).</li>
+      <li><span class="tag pend">Pendiente</span> <strong>Semana 4</strong>: robustez (VAR/IV), interpretación económica.</li>
+      <li><span class="tag pend">Pendiente</span> <strong>Semana 5</strong>: documento Word (≤10 páginas) y slides de sustentación (20 min).</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="num">3</span> Estado del panel de datos</h2>
+    <table>
+      <thead>
+        <tr><th>Archivo</th><th>Fuente</th><th>Ventana</th><th>Estado</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>banrep_mensual.csv</code></td><td>BanRep</td><td>2015-01 a 2025-12</td><td>✅ Completo</td></tr>
+        <tr><td><code>sfc_icv_mensual.csv</code></td><td>SFC</td><td>2011-01 a 2023-12</td><td>⚠️ Falta 2024-2025</td></tr>
+        <tr><td><code>dane_mercado_laboral_mensual.csv</code></td><td>DANE-GEIH</td><td>2001-01 a 2025-12</td><td>⚠️ Solo TD/TGP/TO, faltan 5 meses (pandemia)</td></tr>
+        <tr><td><code>panel_calidad_cartera.csv</code></td><td>Consolidado</td><td>2015-01 a 2023-12</td><td>✅ Listo para explorar (acotado por SFC)</td></tr>
+      </tbody>
+    </table>
+    <div class="note">
+      El panel final tiene <strong>5 segmentos × 108 meses = 540 filas</strong>. Apenas se consiga
+      SFC 2024-2025, solo hay que cambiar <code>FECHA_FIN</code> en <code>src/consolidar_panel.py</code>
+      y volver a correrlo — no hace falta tocar nada más.
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">4</span> Cómo trabajar en equipo (guía rápida)</h2>
+    <p><strong>Antes de empezar cualquier tarea:</strong></p>
+    <ol class="steps">
+      <li>Clona el repo y crea tu entorno virtual:
+        <pre>git clone &lt;url-del-repo&gt;
+cd labor-income-credit-quality
+python3 -m venv .venv &amp;&amp; source .venv/bin/activate
+pip install -r requirements.txt</pre>
+      </li>
+      <li>Antes de tocar código, actualiza tu rama local:
+        <pre>git checkout main
+git pull</pre>
+      </li>
+      <li>Crea una rama con tu nombre/tarea (no trabajar directo sobre <code>main</code>):
+        <pre>git checkout -b tu-nombre/tarea-corta
+# ej: git checkout -b camila/informalidad-geiheiss</pre>
+      </li>
+      <li>Corre los scripts existentes para entender el pipeline antes de agregar algo nuevo:
+        <pre>python src/procesar_banrep_sdmx.py
+python src/procesar_sfc_calidad_cartera.py
+python src/procesar_geih.py
+python src/consolidar_panel.py</pre>
+      </li>
+      <li>Haz commits pequeños y frecuentes con mensajes claros, y sube tu rama:
+        <pre>git add .
+git commit -m "Agrega informalidad desde anexo GEIHEISS"
+git push -u origin tu-nombre/tarea-corta</pre>
+      </li>
+      <li>Abre un Pull Request hacia <code>main</code> para que alguien más revise antes de mezclar
+        (evita pisar el trabajo de otros y detecta errores en los datos a tiempo).</li>
+      <li>Actualiza <code>docs/fuentes_de_datos.md</code> cada vez que agregues o cambies una fuente de
+        datos (fecha de corte, fecha de descarga, notas) — es el registro de trazabilidad del equipo.</li>
+    </ol>
+
+    <div class="note">
+      <strong>Regla de oro con los datos:</strong> nunca edites a mano los archivos de
+      <code>data/raw/</code>. Todo lo "crudo" se queda intacto; toda limpieza/transformación va en
+      un script de <code>src/</code> que escribe su salida en <code>data/processed/</code>. Así el
+      trabajo es 100% reproducible y auditable por cualquiera del equipo.
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">5</span> Reparto sugerido de lo que falta</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>🏦 Datos SFC 2024-2025</h3>
+        <p>Buscar y descargar la actualización de calidad de cartera en la web de la SFC; adaptar
+        <code>src/procesar_sfc_calidad_cartera.py</code> si el formato cambió.</p>
+      </div>
+      <div class="card">
+        <h3>👥 Informalidad + ingreso real</h3>
+        <p>Ubicar y descargar anexos GEIHEISS (informalidad) y la fuente de ingreso laboral +
+        IPC del DANE; escribir <code>src/procesar_informalidad_ingreso.py</code>.</p>
+      </div>
+      <div class="card">
+        <h3>📊 Estadística descriptiva</h3>
+        <p>Notebook en <code>notebooks/</code> con gráficos exploratorios: NPL por segmento vs.
+        desempleo y TPM, matriz de correlaciones, series de tiempo por segmento.</p>
+      </div>
+      <div class="card">
+        <h3>🧮 Modelo (Semana 3)</h3>
+        <p>Empezar a prototipar el panel dinámico con efectos fijos e interacción
+        desempleo×TPM en <code>src/model.py</code>, apenas el panel esté más completo.</p>
+      </div>
+      <div class="card">
+        <h3>📝 Marco teórico-regulatorio</h3>
+        <p>Medio párrafo por bloque (teoría del ciclo crediticio, normativa SFC, metodología GEIH)
+        para la Sección 2 del entregable (ver <code>PLAN_DE_TRABAJO.md</code>, sección 3).</p>
+      </div>
+      <div class="card">
+        <h3>🎨 Visualización final</h3>
+        <p>Preparar plantilla del Word (≤10 páginas) y de las slides (20 min), a la espera de que
+        Modelación entregue resultados.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">6</span> Enlaces útiles</h2>
+    <ul class="status-list">
+      <li><span class="tag ok">Doc</span> <a href="../PLAN_DE_TRABAJO.md">PLAN_DE_TRABAJO.md</a> — hipótesis, metodología y cronograma completo.</li>
+      <li><span class="tag ok">Doc</span> <a href="./fuentes_de_datos.md">docs/fuentes_de_datos.md</a> — detalle de fuentes, URLs y registro de descargas.</li>
+      <li><span class="tag ok">Código</span> <code>src/</code> — scripts de descarga y procesamiento.</li>
+      <li><span class="tag ok">Datos</span> <code>data/processed/panel_calidad_cartera.csv</code> — panel listo para explorar.</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  Caso 3 · Economía Financiera y Bancaria · Universidad EAFIT — página generada para seguimiento interno del equipo.
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+== SFC: calidad de cartera ==
+[OK] sfc_calidad_cartera_sin_castigos.xlsx (687 KB)
+[OK] sfc_calidad_cartera_con_castigos.xlsx (687 KB)
+
+== DANE: anexos GEIH mensuales 2015-2025 (puede tardar varios minutos) ==
+[NO DISPONIBLE] anex-GEIH-ene2015.xlsx (ningún patrón conocido funcionó)
+[NO DISPONIBLE] anex-GEIH-feb2015.xlsx (ningún patrón conocido funcionó)
+[NO DISPONIBLE] anex-GEIH-mar2015.xlsx (ningún patrón conocido funcionó)
+[NO DISPONIBLE] anex-GEIH-abr2015.xlsx (ningún patrón conocido funcionó)
+[NO DISPONIBLE] anex-GEIH-may2015.xlsx (ningún patrón conocido funcionó)
+[NO DISPONIBLE] anex-GEIH-jun2015.xlsx (ningún patrón conocido funcionó)
+[NO DISPONIBLE] anex-GEIH-jul2015.xlsx (ningún patrón conocido funcionó)
+[NO DISPONIBLE] anex-GEIH-ago2015.xlsx (ningún patrón conocido funcionó)
+[NO DISPONIBLE] anex-GEIH-sep2015.xlsx (ningún patrón conocido funcionó)
+[NO DISPONIBLE] anex-GEIH-oct2015.xlsx (ningún patrón conocido funcionó)
+[NO DISPONIBLE] anex-GEIH-nov2015.xlsx (ningún patrón conocido funcionó)
+[NO DISPONIBLE] anex-GEIH-dic2015.xlsx (ningún patrón conocido funcionó)
+[NO DISPONIBLE] anex-GEIH-ene2016.xlsx (ningún patrón conocido funcionó)
+[NO DISPONIBLE] anex-GEIH-feb2016.xlsx (ningún patrón conocido funcionó)
+[NO DISPONIBLE] anex-GEIH-mar2016.xlsx (ningún patrón conocido funcionó)
+[NO DISPONIBLE] anex-GEIH-abr2016.xlsx (ningún patrón conocido funcionó)
+[NO DISPONIBLE] anex-GEIH-may2016.xlsx (ningún patrón conocido funcionó)
+[NO DISPONIBLE] anex-GEIH-jun2016.xlsx (ningún patrón conocido funcionó)
+[NO DISPONIBLE] anex-GEIH-jul2016.xlsx (ningún patrón conocido funcionó)
+[NO DISPONIBLE] anex-GEIH-ago2016.xlsx (ningún patrón conocido funcionó)
+[NO DISPONIBLE] anex-GEIH-sep2016.xlsx (ningún patrón conocido funcionó)
+[NO DISPONIBLE] anex-GEIH-oct2016.xlsx (ningún patrón conocido funcionó)
+[NO DISPONIBLE] anex-GEIH-nov2016.xlsx (ningún patrón conocido funcionó)
+[NO DISPONIBLE] anex-GEIH-dic2016.xlsx (ningún patrón conocido funcionó)
+[NO DISPONIBLE] anex-GEIH-ene2017.xlsx (ningún patrón conocido funcionó)
+[NO DISPONIBLE] anex-GEIH-feb2017.xlsx (ningún patrón conocido funcionó)
+[NO DISPONIBLE] anex-GEIH-mar2017.xlsx (ningún patrón conocido funcionó)
+[NO DISPONIBLE] anex-GEIH-abr2017.xlsx (ningún patrón conocido funcionó)
+[OK] anex-GEIH-may2017.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_may_17.xlsx
+[OK] anex-GEIH-jun2017.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_jun_17.xlsx
+[OK] anex-GEIH-jul2017.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_jul_17.xlsx
+[OK] anex-GEIH-ago2017.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_ago_17.xlsx
+[OK] anex-GEIH-sep2017.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_sep_17.xlsx
+[OK] anex-GEIH-oct2017.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_oct_17.xlsx
+[OK] anex-GEIH-nov2017.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_nov_17.xlsx
+[OK] anex-GEIH-dic2017.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_dic_17.xlsx
+[OK] anex-GEIH-ene2018.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_ene_18.xlsx
+[OK] anex-GEIH-feb2018.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_feb_18.xlsx
+[OK] anex-GEIH-mar2018.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_mar_18.xlsx
+[OK] anex-GEIH-abr2018.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_abr_18.xlsx
+[OK] anex-GEIH-may2018.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_may_18.xlsx
+[OK] anex-GEIH-jun2018.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_jun_18.xlsx
+[OK] anex-GEIH-jul2018.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_jul_18.xlsx
+[OK] anex-GEIH-ago2018.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_ago_18.xlsx
+[OK] anex-GEIH-sep2018.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_sep_18.xlsx
+[OK] anex-GEIH-oct2018.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_oct_18.xlsx
+[OK] anex-GEIH-nov2018.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_nov_18.xlsx
+[OK] anex-GEIH-dic2018.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_dic_18.xlsx
+[OK] anex-GEIH-ene2019.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_ene_19.xlsx
+[OK] anex-GEIH-feb2019.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_feb_19.xlsx
+[OK] anex-GEIH-mar2019.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_mar_19.xlsx
+[OK] anex-GEIH-abr2019.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_abr_19.xlsx
+[OK] anex-GEIH-may2019.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_may_19.xlsx
+[OK] anex-GEIH-jun2019.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_jun_19.xlsx
+[OK] anex-GEIH-jul2019.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_jul_19.xlsx
+[OK] anex-GEIH-ago2019.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_ago_19.xlsx
+[OK] anex-GEIH-sep2019.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_sep_19.xlsx
+[OK] anex-GEIH-oct2019.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_oct_19.xlsx
+[OK] anex-GEIH-nov2019.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_nov_19.xlsx
+[OK] anex-GEIH-dic2019.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_dic_19.xlsx
+[OK] anex-GEIH-ene2020.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_ene_20.xlsx
+[OK] anex-GEIH-feb2020.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_feb_20.xlsx
+[OK] anex-GEIH-mar2020.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_mar_20.xlsx
+[OK] anex-GEIH-abr2020.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_abr_20.xlsx
+[OK] anex-GEIH-may2020.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_may_20.xlsx
+[OK] anex-GEIH-jun2020.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_jun_20.xlsx
+[OK] anex-GEIH-jul2020.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_jul_20.xlsx
+[OK] anex-GEIH-ago2020.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_ago_20.xlsx
+[OK] anex-GEIH-sep2020.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_sep_20.xlsx
+[OK] anex-GEIH-oct2020.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_oct_20.xlsx
+[OK] anex-GEIH-nov2020.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_nov_20.xlsx
+[OK] anex-GEIH-dic2020.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_dic_20.xlsx
+[OK] anex-GEIH-ene2021.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_ene_21.xlsx
+[OK] anex-GEIH-feb2021.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_feb_21.xlsx
+[OK] anex-GEIH-mar2021.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_mar_21.xlsx
+[OK] anex-GEIH-abr2021.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_abr_21.xlsx
+[OK] anex-GEIH-may2021.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_may_21.xlsx
+[OK] anex-GEIH-jun2021.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_jun_21.xlsx
+[OK] anex-GEIH-jul2021.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_jul_21.xlsx
+[OK] anex-GEIH-ago2021.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_ago_21.xlsx
+[OK] anex-GEIH-sep2021.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_sep_21.xlsx
+[OK] anex-GEIH-oct2021.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_oct_21.xlsx
+[OK] anex-GEIH-nov2021.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_nov_21.xlsx
+[OK] anex-GEIH-dic2021.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_dic_21.xlsx
+[OK] anex-GEIH-ene2022.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_ene_22.xlsx
+[OK] anex-GEIH-feb2022.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_feb_22.xlsx
+[OK] anex-GEIH-mar2022.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_mar_22.xlsx
+[OK] anex-GEIH-abr2022.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_abr_22.xlsx
+[OK] anex-GEIH-may2022.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_may_22.xlsx
+[OK] anex-GEIH-jun2022.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_jun_22.xlsx
+[OK] anex-GEIH-jul2022.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_jul_22.xlsx
+[OK] anex-GEIH-ago2022.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_ago_22.xlsx
+[OK] anex-GEIH-sep2022.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_sep_22.xlsx
+[OK] anex-GEIH-oct2022.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_oct_22.xlsx
+[OK] anex-GEIH-nov2022.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_nov_22.xlsx
+[OK] anex-GEIH-dic2022.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_dic_22.xlsx
+[OK] anex-GEIH-ene2023.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_ene_23.xlsx
+[OK] anex-GEIH-feb2023.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_feb_23.xlsx
+[OK] anex-GEIH-mar2023.xlsx  <- https://www.dane.gov.co/files/investigaciones/boletines/ech/ech/anexo_empleo_mar_23.xlsx
+[OK] anex-GEIH-abr2023.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/EMPLEO_DESEMPLEO/anex-GEIH-abr2023.xlsx
+[OK] anex-GEIH-may2023.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-may2023.xlsx
+[OK] anex-GEIH-jun2023.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-jun2023.xlsx
+[OK] anex-GEIH-jul2023.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-jul2023.xlsx
+[OK] anex-GEIH-ago2023.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-ago2023.xlsx
+[OK] anex-GEIH-sep2023.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-sep2023.xlsx
+[OK] anex-GEIH-oct2023.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-oct2023.xlsx
+[OK] anex-GEIH-nov2023.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-nov2023.xlsx
+[OK] anex-GEIH-dic2023.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-dic2023.xlsx
+[OK] anex-GEIH-ene2024.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-ene2024.xlsx
+[OK] anex-GEIH-feb2024.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-feb2024.xlsx
+[OK] anex-GEIH-mar2024.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-mar2024.xlsx
+[OK] anex-GEIH-abr2024.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-abr2024.xlsx
+[OK] anex-GEIH-may2024.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-may2024.xlsx
+[OK] anex-GEIH-jun2024.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-jun2024.xlsx
+[OK] anex-GEIH-jul2024.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-jul2024.xlsx
+[OK] anex-GEIH-ago2024.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-ago2024.xlsx
+[OK] anex-GEIH-sep2024.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-sep2024.xlsx
+[OK] anex-GEIH-oct2024.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-oct2024.xlsx
+[OK] anex-GEIH-nov2024.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-nov2024.xlsx
+[OK] anex-GEIH-dic2024.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-dic2024.xlsx
+[OK] anex-GEIH-ene2025.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-ene2025.xlsx
+[OK] anex-GEIH-feb2025.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-feb2025.xlsx
+[OK] anex-GEIH-mar2025.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-mar2025.xlsx
+[OK] anex-GEIH-abr2025.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-abr2025.xlsx
+[OK] anex-GEIH-may2025.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-may2025.xlsx
+[OK] anex-GEIH-jun2025.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-jun2025.xlsx
+[OK] anex-GEIH-jul2025.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-jul2025.xlsx
+[OK] anex-GEIH-ago2025.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-ago2025.xlsx
+[OK] anex-GEIH-sep2025.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-sep2025.xlsx
+[OK] anex-GEIH-oct2025.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-oct2025.xlsx
+[OK] anex-GEIH-nov2025.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-nov2025.xlsx
+[OK] anex-GEIH-dic2025.xlsx  <- https://www.dane.gov.co/files/operaciones/GEIH/anex-GEIH-dic2025.xlsx
+
+28 meses sin descargar. Revisar manualmente en:
+https://www.dane.gov.co/index.php/estadisticas-por-tema/mercado-laboral/empleo-y-desempleo/geih-historicos
+Meses pendientes: anex-GEIH-ene2015.xlsx, anex-GEIH-feb2015.xlsx, anex-GEIH-mar2015.xlsx, anex-GEIH-abr2015.xlsx, anex-GEIH-may2015.xlsx, anex-GEIH-jun2015.xlsx, anex-GEIH-jul2015.xlsx, anex-GEIH-ago2015.xlsx, anex-GEIH-sep2015.xlsx, anex-GEIH-oct2015.xlsx, anex-GEIH-nov2015.xlsx, anex-GEIH-dic2015.xlsx, anex-GEIH-ene2016.xlsx, anex-GEIH-feb2016.xlsx, anex-GEIH-mar2016.xlsx, anex-GEIH-abr2016.xlsx, anex-GEIH-may2016.xlsx, anex-GEIH-jun2016.xlsx, anex-GEIH-jul2016.xlsx, anex-GEIH-ago2016.xlsx, anex-GEIH-sep2016.xlsx, anex-GEIH-oct2016.xlsx, anex-GEIH-nov2016.xlsx, anex-GEIH-dic2016.xlsx, anex-GEIH-ene2017.xlsx, anex-GEIH-feb2017.xlsx, anex-GEIH-mar2017.xlsx, anex-GEIH-abr2017.xlsx
+
+== BanRep: series SDMX ==
+[OK] tpm_mensual (27 KB)
+[OK] ibr_diaria (3779 KB)
+[OK] dtf_mensual (27 KB)
+[FALLA] agregados_monetarios_mensual: HTTPSConnectionPool(host='totoro.banrep.gov.co', port=443): Read timed out. (read timeout=30)
+[FALLA] trm_diaria: HTTPSConnectionPool(host='totoro.banrep.gov.co', port=443): Max retries exceeded with url: /nsi-jax-ws/rest/data/ESTAT,DF_TRM_DAILY_HIST,1.0/all/ALL/?startPeriod=2015&endPeriod=2026&dimensionAtObservation=TIME_PERIOD&detail=full (Caused by NameResolutionError("HTTPSConnection(host='totoro.banrep.gov.co', port=443): Failed to resolve 'totoro.banrep.gov.co' ([Errno 8] nodename nor servname provided, or not known)"))
+
+Listo. Revisa data/raw/ y anota en docs/fuentes_de_datos.md cualquier archivo que haya fallado.
