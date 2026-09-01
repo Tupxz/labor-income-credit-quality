@@ -1,0 +1,10 @@
+title: "Caso 3 — Desempleo, ingreso laboral y calidad de cartera"
+description: "Avance del equipo — Economía Financiera y Bancaria, Universidad EAFIT"
+theme: jekyll-theme-cayman
+
+# El sitio se sirve desde la raíz del repo (branch main / root), no desde /docs.
+# index.html tiene "layout: none" en su front matter para que se renderice
+# como página estática (con su propio CSS) en lugar de con el layout del tema.
+
+include:
+  - index.html
