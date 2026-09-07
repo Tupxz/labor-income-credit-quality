@@ -67,6 +67,10 @@ def a_mensual_desde_diaria(df, col_salida):
     return d.groupby("mes")["valor"].mean().rename(col_salida)
 
 
+VENTANA_INICIO = "2015-01"
+VENTANA_FIN = "2026-06"   # corte de la SFC; ampliar cuando se redescargue el SDMX
+
+
 def main():
     os.makedirs(OUT_DIR, exist_ok=True)
 
@@ -87,7 +91,10 @@ def main():
     panel = pd.concat([tpm, dtf, ibr_m, trm_m, m1, m2, m3], axis=1)
     panel.index.name = "fecha"
     panel = panel.sort_index()
-    panel = panel.loc["2015-01":"2025-12"]  # recorta a la ventana objetivo del caso
+    # Ventana del caso. El fin lo manda la fuente de cartera (SFC), que llega a
+    # 2026-06; el XML crudo de BanRep ya trae esa ventana completa, así que no
+    # se recorta más allá de lo que exista.
+    panel = panel.loc[VENTANA_INICIO:VENTANA_FIN]
 
     ruta_salida = os.path.join(OUT_DIR, "banrep_mensual.csv")
     panel.to_csv(ruta_salida)

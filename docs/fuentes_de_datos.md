@@ -197,3 +197,187 @@ de `data/raw/` y escribiendo un CSV limpio en `data/processed/`:
 3. Estadística descriptiva y gráficos exploratorios del panel consolidado
    (NPL por segmento vs. desempleo/TPM) — insumo de la Sección 3 del
    entregable.
+
+---
+
+## Semana 3 — Reconstrucción del bloque de cartera y del deflactor (7-sep-2026)
+
+### La fuente de cartera cambió: ahora se usa el reporte por producto
+
+`data/raw/sfc/Distribución_de_cartera_por_producto_20260904.csv` (110.969 filas)
+reemplaza a los dos Excel agregados como fuente principal. Ventajas: cubre
+**2015-01 a 2026-06 (138 meses)** —cierra el hueco 2024-2025 que dejaban los
+Excel, que solo llegaban a 2023-12— y viene a nivel **entidad × producto**, con
+32 productos en vez de 5 segmentos.
+
+Procesado por `src/procesar_sfc_producto.py`, que sustituye a
+`procesar_sfc_calidad_cartera.py`. Salidas en `data/processed/`:
+
+| Archivo | Contenido |
+|---|---|
+| `sfc_cartera_producto_mensual.csv` | 32 productos × 138 meses |
+| `sfc_cartera_familia_mensual.csv` | comercial / consumo / vivienda / microcrédito / total |
+| `sfc_tarjeta_por_ingreso_mensual.csv` | tarjeta de crédito abierta por ingreso del tarjetahabiente |
+| `sfc_auditoria_esquemas_mora.csv` | evidencia de la trampa (2) de abajo |
+
+### Tres trampas del archivo crudo (verificadas, no supuestas)
+
+**(1) RENGLON.** Para cada entidad-mes-producto, `RENGLON=5` es el total del
+producto y los renglones 10/15/20/25 son su desagregación. Cuatro productos la
+tienen (tarjeta de crédito, libranza, construcción, leasing financiero) y los
+subrenglones suman exacto al total (ratio 1,000000). **No filtrar `RENGLON=5`
+infla la cartera bruta del sistema en +27,2 %.**
+
+**(2) Buckets de mora.** Las columnas (3)…(15) no son acumulables: cada familia
+reporta en un esquema distinto y excluyente. Peso de cada bloque sobre el saldo,
+2015-2026:
+
+| Familia | Columnas que aplican | Vencida/saldo |
+|---|---|---|
+| Consumo | (3)+(4)+(8)+(9) | 5,15 % |
+| Comercial | (5)+(8)+(12)+(14) | 3,78 % |
+| Microcrédito | (3)+(4)+(6)+(7) | 7,37 % |
+| Vivienda | (11)+(12)+(13)+(15) | 3,06 % |
+
+Sumar (3)+(4)+(8)+(9) para todo deja **vivienda en 0,00 %**, comercial en 0,55 %
+(−85 %) y microcrédito en 2,15 % (−71 %). El script audita el mapeo contra los
+datos y se cae si no cuadra.
+
+**(3) Umbral de mora en vivienda.** El bucket (10) "Vencida 1-4 meses" queda por
+debajo del umbral del ICV que publica la SFC. Incluyéndolo, vivienda se va
++3,5 pp por encima del oficial; excluyéndolo el error cae a 0,11 pp. Se conserva
+aparte en la columna `icv_pre_umbral`: es la mora más temprana de vivienda, la
+primera que reacciona a un choque de ingreso, y el indicador oficial no la muestra.
+
+### Validación contra la serie oficial
+
+ICV reconstruido vs. `sfc_icv_mensual.csv` (Excel agregado de la SFC), 108 meses
+de 2015-01 a 2023-12:
+
+| Familia | Error absoluto medio | Correlación |
+|---|---|---|
+| Comercial | 0,002 pp | 1,0000 |
+| Consumo | 0,001 pp | 1,0000 |
+| Microcrédito | 0,005 pp | 0,9993 |
+| Total | 0,017 pp | 1,0000 |
+| Vivienda | 0,115 pp | 0,9992 |
+
+Los tres primeros reproducen la cifra oficial al tercer decimal. Vivienda queda
+con un sesgo de nivel estable de −0,11 pp (no se mueve entre 2015 y 2023):
+diferencia de perímetro, no de forma.
+
+Universo: **establecimientos de crédito** (TIPO_ENTIDAD 1, 2, 4 y 32). Se excluye
+el tipo 22 —instituciones oficiales especiales: FNA, FDN, Caja Promotora de
+Vivienda Militar—, que no son establecimientos de crédito y no entran en el ICV
+del sistema. Son el 2,1 % del saldo.
+
+### IPC y salario real
+
+`src/procesar_ipc.py` → `data/processed/dane_ipc_mensual.csv` (283 meses,
+2003-01 a 2026-07). El archivo del DANE es la **serie de empalme** con base
+**dic-2018 = 100** (verificado: el índice de dic-2018 es exactamente 100,00), o
+sea la base oficial vigente y ya empalmada con la metodología anterior. La
+variación implícita en el índice coincide con la publicada por el DANE dentro de
+0,016 pp.
+
+**La base 2018 no es un problema metodológico**: cambiar la base mueve el nivel
+de la serie real, nunca su tasa de crecimiento ni su correlación con la mora.
+
+`src/deflactar.py` es el módulo de deflactación. Recibe cualquier serie nominal
+mensual y devuelve la real más la descomposición crecimiento nominal /
+inflación. Usa la fórmula exacta `(1+g)/(1+π)−1` y no la resta `g−π`, que con la
+inflación de 2022-2023 se equivoca hasta en 0,57 pp.
+
+### El problema real del salario mínimo como medida de ingreso
+
+No es la base del IPC, es el numerador:
+
+1. Es un **precio administrado** por decreto, no un resultado de mercado, y desde
+   2019 se fija deliberadamente por encima de la inflación. Está contaminado por
+   simultaneidad con las mismas condiciones macro que explican la mora.
+2. **Tiene un solo valor por año** (verificado en `src/deflactar.py`). En un
+   panel mensual eso es un escalón de enero: la varianza identificadora termina
+   viniendo del IPC, no del salario.
+3. **No describe a la población deudora.** Con informalidad ~55 %, buena parte de
+   los ocupados gana por debajo del mínimo, y quien tiene tarjeta o libranza gana
+   por encima.
+4. Es una serie tendencial contra un ICV también tendencial: riesgo de regresión
+   espuria.
+
+### Ingreso laboral: los anexos de la GEIH no sirven
+
+Se revisaron las hojas de los 137 anexos en `data/raw/dane_geih/`. La única que
+hace match con "ingreso/IML/salario" es `Total_nacional_IML_Sexo`, donde
+IML = *Indicadores de Mercado Laboral por sexo* (TGP/TO/TD/TS). **Ningún anexo
+mensual publica ingreso laboral.**
+
+El ingreso solo existe a nivel de persona, en los microdatos.
+`src/procesar_geih_microdatos.py` los procesa (media y **mediana** ponderadas por
+factor de expansión, abiertas por formalidad y posición ocupacional). Falta bajar
+los .zip de https://microdatos.dane.gov.co/index.php/catalog/ a
+`data/raw/geih_microdatos/` — ver el `LEEME.md` de esa carpeta.
+
+Por qué la mediana además de la media: la distribución del ingreso laboral
+colombiano es muy asimétrica a la derecha, así que la media se mueve con la cola
+alta y no con el deudor típico.
+
+### Sin acceso de red
+
+Verificado el 7-sep-2026: `curl` a dane.gov.co, microdatos.dane.gov.co,
+superfinanciera.gov.co, totoro.banrep.gov.co y datos.gov.co devuelve 403 del
+proxy, tanto desde el computador como desde el entorno en la nube. Toda descarga
+nueva es manual, desde un navegador.
+
+### Ventana de BanRep: el recorte estaba en el código, no en los datos
+
+`procesar_banrep_sdmx.py` recortaba el panel a 2025-12 con una línea que quedó de
+cuando la ventana objetivo era otra. Los XML crudos **ya tenían 138 observaciones
+hasta 2026-06** para TPM, DTF y agregados monetarios. Se cambió por las constantes
+`VENTANA_INICIO` / `VENTANA_FIN` y la serie quedó alineada con la cartera. No hubo
+que descargar nada.
+
+**IBR y TRM sí se quedan cortas en la fuente**: los XML diarios terminan el
+2025-12-30 (20.774 observaciones en el de IBR). Son los flujos `_HIST`, que van
+rezagados. Para extenderlos hay que volver a consultar la API SDMX de BanRep desde
+un navegador. No bloquea el modelo: TPM y DTF sí llegan a 2026-06 y sirven como
+costo del crédito.
+
+Unidades de M1/M2/M3 (que estaban marcadas como pendientes de verificar): en
+jun-2026 M2 = 970.789 → 970,8 billones de pesos, contra un PIB nominal del orden de
+1.900 billones, o sea M2/PIB ≈ 51 %. Orden de magnitud plausible, así que las
+columnas `*_mm_cop` están en miles de millones. Es un chequeo de plausibilidad, no
+una verificación contra cifra oficial.
+
+### Panel consolidado (`src/consolidar_panel.py`, reescrito)
+
+Salidas: `panel_calidad_cartera.csv` (producto × mes, 4.416 filas × 41 columnas) y
+`panel_calidad_cartera_familia.csv` (690 × 39). Ventana **2015-01 a 2026-06**.
+
+Se arma sobre la ventana completa de la cartera y deja NaN donde una fuente todavía
+no llega, en vez de recortar a la intersección: cuando entren los datos que faltan
+se vuelve a correr y se llena, sin reestructurar. El script imprime qué series no
+cierran la ventana y cuántos meses les faltan.
+
+Variables derivadas que valen la pena:
+
+- `tpm_real`, `dtf_real`, `ibr_real` — tasas en términos reales, (1+i)/(1+π)−1. La
+  distinción no es cosmética: en dic-2022 la TPM nominal era 11,4 % pero la **real
+  era −1,5 %**, o sea la política todavía no apretaba. El apretón real llega en
+  2024 (TPM real 4,3 %).
+- `cartera_bruta_real` y `cartera_var_real_anual` — control del efecto denominador.
+  El ICV total tocó techo en dic-2023 (4,99 %) exactamente cuando la cartera real
+  caía 6,8 % anual. Parte de ese pico es denominador, no deterioro.
+- `icv_temprano` / `icv_tardio` — mora que acaba de empezar vs. deterioro
+  consolidado. La temprana es la que responde rápido a un choque de ingreso.
+- `icr_riesgosa` (B..E) e `icr_incumplida` (C..E) — calidad por calificación de
+  riesgo, alternativa al ICV por altura de mora.
+
+### Falta descargar (manual, no hay red)
+
+| Qué | Dónde | Para qué |
+|---|---|---|
+| Microdatos GEIH, un mes primero | microdatos.dane.gov.co | ingreso laboral — es el bloqueo real |
+| Anexo GEIH más reciente | dane.gov.co | extiende TD/TGP/TO de 2025-12 a 2026-06 (basta **un** archivo: cada anexo trae la serie histórica completa) |
+| IBR y TRM, redescarga SDMX | totoro.banrep.gov.co | cierra la ventana de esas dos series |
+| Anexos GEIHEISS | dane.gov.co | informalidad |
+| Tasas de colocación por modalidad y tasa de usura | banrep.gov.co / superfinanciera.gov.co | costo del crédito que enfrenta el deudor, no la interbancaria. La usura es un techo que ata justo al tramo de bajos ingresos cuando las tasas suben |

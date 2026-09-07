@@ -10,3 +10,4 @@ xlrd
 requests
 jupyterlab
 python-docx
+pyreadstat

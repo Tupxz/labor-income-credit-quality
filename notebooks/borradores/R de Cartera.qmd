@@ -1,0 +1,142 @@
+---
+title: "Parte calidad de la cartera"
+author: "Yo"
+format: html
+editor: visual
+---
+
+# Parte de calidad de la cartera 
+
+```{r}
+library(readr)
+datos <- read_csv("Distribución_de_cartera_por_producto_20260904.csv")
+
+```
+
+```{r}
+names(datos)
+
+# Ver la estructura de los datos (tipos de variables: numéricas, texto, fechas)
+str(datos)
+
+# Ver las primeras 6 filas para entender el formato
+head(datos)
+```
+
+```{r}
+# Resumen estadístico básico
+summary(datos)
+
+# Si prefieres una tabla más completa con desviación estándar, usa la librería 'psych'
+# install.packages("psych")
+library(psych)
+describe(datos)
+```
+
+```{r}
+library(tidyverse)
+
+# 1. Función para limpiar formatos de dinero colombianos (puntos a "" y comas a puntos)
+limpiar_dinero <- function(x) {
+  x <- gsub("\\.", "", x)       # Eliminar puntos de miles
+  x <- gsub(",", ".", x)       # Cambiar coma decimal por punto
+  as.numeric(x)
+}
+
+# 2. Copiar y transformar el dataset para análisis
+datos_limpios <- datos %>%
+  mutate(
+    # Convertir fecha de corte a tipo Date
+    FECHA_CORTE = as.Date(FECHA_CORTE, format = "%d/%m/%Y"),
+    
+    # Limpiar variables clave de saldo (ejemplo: Saldo total y algunas de vencimiento)
+    saldo_total = limpiar_dinero(`(1) Saldo de la cartera a la fecha de corte del reporte`),
+    vigente = limpiar_dinero(`(2) Vigente`),
+    
+    # Sumarizamos las carteras vencidas principales (ej: 1-2 meses, 2-3 meses, o mayores según aplique)
+    vencida_1_2 = limpiar_dinero(`(3) Vencida 1-2 Meses`),
+    vencida_2_3 = limpiar_dinero(`(4) Vencida 2-3 Meses`),
+    vencida_3_6 = limpiar_dinero(`(8) Vencida 3-6 Meses`),
+    vencida_mas_6 = limpiar_dinero(`(9) Vencida +6 meses`)
+  ) %>%
+  mutate(
+    # Calcular Cartera Vencida Total aproximada sumando los rangos de mora
+    cartera_vencida_total = coalesce(vencida_1_2, 0) + coalesce(vencida_2_3, 0) + 
+                              coalesce(vencida_3_6, 0) + coalesce(vencida_mas_6, 0),
+    
+    # Calcular el Ratio de Mora (NPL Ratio)
+    npl_ratio = ifelse(saldo_total > 0, (cartera_vencida_total / saldo_total) * 100, 0)
+  )
+
+# ==========================================
+# 3. ESTADÍSTICAS DESCRIPTIVAS PARA EL CASO 3
+# ==========================================
+
+# A. Descriptivas generales del NPL y Saldo Total
+resumen_general <- datos_limpios %>%
+  summarise(
+    Media_Saldo_Total = mean(saldo_total, na.rm = TRUE),
+    Mediana_Saldo_Total = median(saldo_total, na.rm = TRUE),
+    Media_NPL = mean(npl_ratio, na.rm = TRUE),
+    Max_NPL = max(npl_ratio, na.rm = TRUE),
+    Desv_NPL = sd(npl_ratio, na.rm = TRUE)
+  )
+
+print("--- Resumen General ---")
+print(resumen_general)
+
+# B. Descriptivas por Tipo de Producto / Segmento (DESCRIP_UC)
+# Esto es vital para ver qué cartera sufre más (consumo, vivienda, comercial, etc.)
+resumen_por_producto <- datos_limpios %>%
+  group_by(DESCRIP_UC) %>%
+  summarise(
+    Total_Observaciones = n(),
+    Cartera_Total_Promedio = mean(saldo_total, na.rm = TRUE) / 1e9, # En miles de millones
+    NPL_Promedio_Pct = mean(npl_ratio, na.rm = TRUE),
+    NPL_Mediano_Pct = median(npl_ratio, na.rm = TRUE)
+  ) %>%
+  arrange(desc(NPL_Promedio_Pct))
+
+print("--- Calidad de Cartera (NPL) por Tipo de Producto ---")
+print(resumen_por_producto)
+```
+
+```{r}
+library(tidyverse)
+library(scales)
+
+# 1. Agrupar los datos por fecha y tipo de producto
+evolucion_npl <- datos_limpios %>%
+  group_by(FECHA_CORTE, DESCRIP_UC) %>%
+  summarise(
+    npl_promedio = mean(npl_ratio, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+# 2. Filtrar los segmentos más representativos (opcional, si tienes muchos y la gráfica se satura)
+# Puedes elegir los principales o ver todos si tu paleta de colores lo permite
+principales_segmentos <- c("TARJETAS DE CRÉDITO", "LIBRE INVERSIÓN", "VEHÍCULO", "LIBRANZA", "CRÉDITO ROTATIVO")
+
+evolucion_filtrada <- evolucion_npl %>%
+  filter(DESCRIP_UC %in% principales_segmentos)
+
+# 3. Crear la gráfica de líneas histórica
+ggplot(evolucion_filtrada, aes(x = FECHA_CORTE, y = npl_promedio, color = DESCRIP_UC, group = DESCRIP_UC)) +
+  geom_line(size = 1) +
+  geom_point(size = 1.5) +
+  scale_x_date(date_labels = "%Y", date_breaks = "1 year") + # Mostrar años en el eje X
+  labs(
+    title = "Evolución Histórica del Ratio de Mora (NPL) por Segmento de Crédito",
+    subtitle = "Tendencia temporal de la calidad de cartera en Colombia",
+    x = "Fecha de Corte",
+    y = "NPL Promedio (%)",
+    color = "Segmento de Crédito"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    legend.position = "bottom",
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) +
+  guides(color = guide_legend(nrow = 2)) # Organizar la leyenda en dos filas para que no estorbe
+```

@@ -1,0 +1,13 @@
+Serie,Transformación,ADF (p),KPSS (p),Veredicto
+ICV total,nivel,0.048,0.022,ambiguo
+ICV total,1ª diferencia,0.045,0.1,estacionaria
+ICV consumo,nivel,0.206,0.031,raíz unitaria
+ICV consumo,1ª diferencia,0.012,0.1,estacionaria
+Tasa de desempleo,nivel,0.472,0.1,ambiguo
+Tasa de desempleo,1ª diferencia,0.209,0.1,ambiguo
+TPM real,nivel,0.678,0.023,raíz unitaria
+TPM real,1ª diferencia,0.002,0.1,estacionaria
+Inflación anual,nivel,0.281,0.075,ambiguo
+Inflación anual,1ª diferencia,0.016,0.1,estacionaria
+"Cartera real, var. anual",nivel,0.483,0.03,raíz unitaria
+"Cartera real, var. anual",1ª diferencia,0.0,0.1,estacionaria

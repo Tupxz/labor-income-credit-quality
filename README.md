@@ -22,18 +22,24 @@ equipo.
 
 **Fuentes de datos:** [`docs/fuentes_de_datos.md`](./docs/fuentes_de_datos.md)
 
-### Estado actual (1-sep-2026)
+### Estado actual (7-sep-2026)
 
 | Bloque | Estado |
 |---|---|
-| Descarga de datos crudos (SFC, BanRep, DANE-GEIH) | ✅ Completo |
+| Descarga de datos crudos (SFC, BanRep, DANE-GEIH, DANE-IPC) | ✅ Completo |
 | Procesamiento BanRep (`src/procesar_banrep_sdmx.py`) | ✅ 2015-2025 |
-| Procesamiento SFC (`src/procesar_sfc_calidad_cartera.py`) | ⚠️ 2011-2023 (falta 2024-2025) |
-| Procesamiento GEIH (`src/procesar_geih.py`) | ⚠️ TD/TGP/TO 2001-2025 (falta informalidad e ingreso real) |
-| Panel consolidado (`src/consolidar_panel.py`) | ✅ 2015-2023, 540 filas |
+| Calidad de cartera por producto (`src/procesar_sfc_producto.py`) | ✅ 2015-2026, validado contra el ICV oficial |
+| IPC y deflactor (`src/procesar_ipc.py`, `src/deflactar.py`) | ✅ 2003-2026 |
+| Mercado laboral GEIH (`src/procesar_geih.py`) | ⚠️ TD/TGP/TO 2001-2025 (falta informalidad) |
+| Ingreso laboral (`src/procesar_geih_microdatos.py`) | ⚠️ Script listo; faltan los microdatos |
+| Panel consolidado (`src/consolidar_panel.py`) | ⚠️ Por rehacer sobre las fuentes nuevas |
 | Estadística descriptiva y gráficos exploratorios | 🔲 Pendiente |
-| Especificación y estimación del modelo | 🔲 Pendiente (Semana 3) |
+| Especificación y estimación del modelo | 🔲 Pendiente |
 | Documento final y sustentación | 🔲 Pendiente (Semana 5) |
+
+> Detalle de las trampas del reporte de la SFC, la validación contra la serie
+> oficial y por qué no se usa el salario mínimo como medida de ingreso:
+> [`docs/fuentes_de_datos.md`](./docs/fuentes_de_datos.md).
 
 Detalle completo, reparto de tareas y guía paso a paso para trabajar en equipo con Git en la
 [página de avance](https://tupxz.github.io/labor-income-credit-quality/).
@@ -69,10 +75,12 @@ pip install -r requirements.txt
 ### Pipeline de datos (orden de ejecución)
 
 ```bash
-python src/procesar_banrep_sdmx.py
-python src/procesar_sfc_calidad_cartera.py
-python src/procesar_geih.py
-python src/consolidar_panel.py
+python src/procesar_banrep_sdmx.py       # tasas y agregados monetarios
+python src/procesar_sfc_producto.py      # calidad de cartera por producto (2015-2026)
+python src/procesar_ipc.py               # IPC, serie de empalme base dic-2018
+python src/procesar_geih.py              # TGP / TO / TD
+python src/procesar_geih_microdatos.py   # ingreso laboral (requiere microdatos)
+python src/consolidar_panel.py           # panel final
 ```
 
 Cada script lee de `data/raw/` (sin modificarlo) y escribe su salida limpia en
