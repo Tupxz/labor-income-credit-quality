@@ -213,8 +213,16 @@ redacción final de las semanas 4-5.
 
 ## 9. Checklist de entrega
 
-- [ ] Documento Word ≤10 páginas con las 6 secciones completas
-- [ ] Script/notebook Python reproducible con el modelo final (`src/`, `notebooks/`)
-- [ ] Presentación de 20 minutos, poco texto, con gráficos y tablas
-- [ ] Fuentes de datos y fecha de corte documentadas en `docs/fuentes_de_datos.md`
+- [x] Documento Word ≤10 páginas con las 6 secciones completas — `output/entregable/caso3_ingreso_laboral_calidad_cartera.docx` (12 páginas totales: portada + 10 de contenido + referencias; formato APA 7, tablas estilo LaTeX/booktabs, ecuaciones formales de los 5 modelos)
+- [x] Script/notebook Python reproducible con el modelo final (`src/`, `notebooks/`) — `src/modelo.py` (5 especificaciones: panel con efectos fijos de entidad y errores Driscoll-Kraay, OLS con HAC/Newey-West, VECM agregado con prueba de Johansen)
+- [ ] Presentación de 20 minutos, poco texto, con gráficos y tablas — pendiente; usar fig3, fig5 y fig6 de `output/figuras/`, que no entraron en el Word
+- [x] Fuentes de datos y fecha de corte documentadas en `docs/fuentes_de_datos.md`
 - [ ] Repositorio de GitHub actualizado con commits incrementales por semana
+
+**Nota (8-sep-2026):** el pre-plan original (secciones 0-8 de este documento) reflejaba el
+diseño inicial de la semana 1 (panel trimestral segmento × tiempo, ecuaciones simultáneas). La
+implementación final evolucionó a un panel mensual producto × mes con efectos fijos y Driscoll-Kraay,
+más un contraste específico de brecha por tramo de ingreso en tarjeta de crédito (comparación
+mismo producto/mismo mes por tramo de ingreso del deudor) y un VECM agregado como robustez —
+ver el entregable final y `[[estado_entregable_caso3]]` / `[[resultados_modelo]]` en la memoria
+del proyecto para el detalle de la especificación efectivamente estimada.

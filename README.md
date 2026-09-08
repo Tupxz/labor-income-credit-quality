@@ -22,24 +22,28 @@ equipo.
 
 **Fuentes de datos:** [`docs/fuentes_de_datos.md`](./docs/fuentes_de_datos.md)
 
-### Estado actual (7-sep-2026)
+### Estado actual (8-sep-2026)
 
 | Bloque | Estado |
 |---|---|
 | Descarga de datos crudos (SFC, BanRep, DANE-GEIH, DANE-IPC) | ✅ Completo |
-| Procesamiento BanRep (`src/procesar_banrep_sdmx.py`) | ✅ 2015-2025 |
+| Procesamiento BanRep (`src/procesar_banrep_sdmx.py`) | ✅ 2015-2026 |
 | Calidad de cartera por producto (`src/procesar_sfc_producto.py`) | ✅ 2015-2026, validado contra el ICV oficial |
 | IPC y deflactor (`src/procesar_ipc.py`, `src/deflactar.py`) | ✅ 2003-2026 |
-| Mercado laboral GEIH (`src/procesar_geih.py`) | ⚠️ TD/TGP/TO 2001-2025 (falta informalidad) |
-| Ingreso laboral (`src/procesar_geih_microdatos.py`) | ⚠️ Script listo; faltan los microdatos |
-| Panel consolidado (`src/consolidar_panel.py`) | ⚠️ Por rehacer sobre las fuentes nuevas |
-| Estadística descriptiva y gráficos exploratorios | 🔲 Pendiente |
-| Especificación y estimación del modelo | 🔲 Pendiente |
-| Documento final y sustentación | 🔲 Pendiente (Semana 5) |
+| Mercado laboral GEIH (`src/procesar_geih.py`) | ✅ TD/TGP/TO 2001-2026 |
+| Ingreso laboral (`src/procesar_geih_microdatos.py`) | ✅ 2015-2026 (panel de ingreso real con n=3.712; faltan ~22 meses de microdatos por descargar) |
+| Panel consolidado (`src/consolidar_panel.py`) | ✅ Panel producto × mes, 32 productos × hasta 138 meses (110.969 filas) |
+| Estadística descriptiva y gráficos exploratorios | ✅ Completo (`output/tablas/`, `output/figuras/`) |
+| Especificación y estimación del modelo | ✅ Completo — 5 modelos (`src/modelo.py`): panel con efectos fijos de entidad y errores Driscoll-Kraay, OLS con HAC/Newey-West, y VECM agregado con prueba de Johansen |
+| Documento final y sustentación | ✅ Word entregado (`output/entregable/caso3_ingreso_laboral_calidad_cartera.docx`); ⏳ slides de la sustentación pendientes |
 
 > Detalle de las trampas del reporte de la SFC, la validación contra la serie
 > oficial y por qué no se usa el salario mínimo como medida de ingreso:
 > [`docs/fuentes_de_datos.md`](./docs/fuentes_de_datos.md).
+
+> El entregable final (6 secciones, formato APA 7, tablas estilo LaTeX/booktabs, ecuaciones
+> formales de los 5 modelos) está en
+> [`output/entregable/caso3_ingreso_laboral_calidad_cartera.docx`](./output/entregable/caso3_ingreso_laboral_calidad_cartera.docx).
 
 Detalle completo, reparto de tareas y guía paso a paso para trabajar en equipo con Git en la
 [página de avance](https://tupxz.github.io/labor-income-credit-quality/).

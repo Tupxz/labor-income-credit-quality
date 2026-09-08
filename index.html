@@ -182,47 +182,46 @@ layout: none
 <header>
   <h1>Caso 3 — Desempleo, ingreso laboral y calidad de cartera</h1>
   <p>Economía Financiera y Bancaria · Universidad EAFIT</p>
-  <span class="badge">Actualizado: 1 de septiembre de 2026 — Semana 2 en curso</span>
+  <span class="badge">Actualizado: 8 de septiembre de 2026 — Entregable final completo</span>
 </header>
 
 <main>
 
   <section>
     <h2><span class="num">✓</span> Resumen ejecutivo</h2>
-    <div class="progress-label"><span>Avance general del pre-plan (5 semanas)</span><span>~40%</span></div>
-    <div class="progress-track"><div class="progress-fill" style="width:40%"></div></div>
+    <div class="progress-label"><span>Avance general del pre-plan (5 semanas)</span><span>100%</span></div>
+    <div class="progress-track"><div class="progress-fill" style="width:100%"></div></div>
     <p style="margin-top:1rem;">
-      Ya tenemos <strong>datos crudos descargados</strong> de las 3 fuentes principales (SFC, BanRep, DANE-GEIH)
-      y <strong>3 scripts de limpieza</strong> que arman un panel mensual consolidado
-      (<code>data/processed/panel_calidad_cartera.csv</code>), listo para empezar a explorar y
-      luego especificar el modelo. Faltan algunas variables (informalidad, ingreso real, IPC) y
-      extender la ventana de la SFC a 2024-2025.
+      El panel está consolidado (SFC, BanRep, DANE-IPC y microdatos GEIH de ingreso laboral),
+      los <strong>5 modelos</strong> están estimados (<code>src/modelo.py</code>: panel con
+      efectos fijos de entidad y errores Driscoll-Kraay, OLS con HAC/Newey-West, y un VECM
+      agregado con prueba de Johansen) y el <strong>documento final</strong> está escrito y
+      entregado en
+      <code>output/entregable/caso3_ingreso_laboral_calidad_cartera.docx</code>
+      (formato APA 7, 6 secciones, ecuaciones formales de los 5 modelos, tablas estilo
+      LaTeX/booktabs). Solo queda preparar las slides de la sustentación (20 min).
     </p>
   </section>
 
   <section>
     <h2><span class="num">1</span> ¿Qué ya está hecho?</h2>
     <ul class="status-list">
-      <li><span class="tag ok">OK</span> Pre-plan de trabajo completo: pregunta, hipótesis (H1/H2/H3), marco teórico-regulatorio a revisar, cronograma de 5 semanas — ver <code>PLAN_DE_TRABAJO.md</code>.</li>
-      <li><span class="tag ok">OK</span> Descarga de datos crudos: SFC (calidad de cartera por modalidad), BanRep (TPM, DTF, IBR, TRM, M1/M2/M3 vía API SDMX) y DANE-GEIH (anexos mensuales 2015-2025) — <code>data/raw/</code>.</li>
-      <li><span class="tag ok">OK</span> <code>src/procesar_banrep_sdmx.py</code> → convierte los XML de BanRep en <code>banrep_mensual.csv</code> (132 meses, 2015-2025).</li>
-      <li><span class="tag ok">OK</span> <code>src/procesar_sfc_calidad_cartera.py</code> → ICV por segmento de cartera (total, comercial, consumo, vivienda, microcrédito) en <code>sfc_icv_mensual.csv</code> (2011-2023).</li>
-      <li><span class="tag ok">OK</span> <code>src/procesar_geih.py</code> → tasa de desempleo (TD), TGP y TO nacional en <code>dane_mercado_laboral_mensual.csv</code> (2001-2025, con hueco esperado en pandemia 2020-03 a 2020-07).</li>
-      <li><span class="tag ok">OK</span> <code>src/consolidar_panel.py</code> → panel final <strong>segmento × mes</strong>: <code>data/processed/panel_calidad_cartera.csv</code> (540 filas, 2015-01 a 2023-12).</li>
+      <li><span class="tag ok">OK</span> Pre-plan de trabajo completo: pregunta, hipótesis, marco teórico-regulatorio, cronograma de 5 semanas — ver <code>PLAN_DE_TRABAJO.md</code>.</li>
+      <li><span class="tag ok">OK</span> Datos consolidados de las 4 fuentes: SFC (calidad de cartera por producto, 2015-01 a 2026-06, 32 productos), BanRep (tasas y agregados vía SDMX), DANE-IPC (empalme base dic-2018) y microdatos GEIH de ingreso laboral (DANE).</li>
+      <li><span class="tag ok">OK</span> Panel final <strong>producto × mes</strong>: <code>data/processed/panel_calidad_cartera.csv</code> (110.969 filas; la muestra efectiva con ingreso real es de 3.712 observaciones, 32 productos × hasta 138 meses).</li>
+      <li><span class="tag ok">OK</span> Estadística descriptiva y gráficos exploratorios completos — <code>output/tablas/</code> (4 tablas) y <code>output/figuras/</code> (8 figuras).</li>
+      <li><span class="tag ok">OK</span> Modelo estimado (<code>src/modelo.py</code>): panel con efectos fijos de entidad y errores Driscoll-Kraay, contraste de brecha por tramo de ingreso en tarjeta de crédito, moderación por tasa de política, VECM agregado con prueba de Johansen e IRF, y 7 especificaciones de robustez.</li>
+      <li><span class="tag ok">OK</span> Documento final entregado: <code>output/entregable/caso3_ingreso_laboral_calidad_cartera.docx</code> — 6 secciones, formato APA 7, ecuaciones formales de los 5 modelos, tablas estilo LaTeX/booktabs.</li>
     </ul>
   </section>
 
   <section>
-    <h2><span class="num">2</span> ¿Qué falta? (por prioridad)</h2>
+    <h2><span class="num">2</span> ¿Qué falta?</h2>
     <ul class="status-list">
-      <li><span class="tag pend">Pendiente</span> <strong>Actualizar SFC a 2024-2025</strong>: el Excel descargado solo llega a dic-2023. Buscar "Sistema financiero colombiano en cifras" en la web de la SFC mes a mes, o el reporte más reciente equivalente. <em>(Bloquea usar toda la ventana de BanRep/DANE, que ya llegan hasta dic-2025).</em></li>
-      <li><span class="tag pend">Pendiente</span> <strong>Informalidad</strong> (DANE, anexos GEIHEISS) — no descargada todavía.</li>
-      <li><span class="tag pend">Pendiente</span> <strong>Ingreso laboral real</strong> — no está en el anexo GEIH estándar; falta ubicar la fuente (posiblemente boletín de mercado laboral por posición ocupacional, o Empalme de series de ingresos del DANE) y el <strong>IPC</strong> para deflactar.</li>
-      <li><span class="tag warn">En duda</span> Verificar la escala/unidad de M1/M2/M3 de BanRep (no queda 100% claro con el atributo <code>UNIT_MULT</code> del XML).</li>
-      <li><span class="tag pend">Pendiente</span> <strong>Estadística descriptiva y gráficos exploratorios</strong> del panel consolidado (NPL por segmento vs. desempleo/TPM) — siguiente paso natural antes de pasar a modelar (hito de Semana 2).</li>
-      <li><span class="tag pend">Pendiente</span> <strong>Semana 3</strong>: especificar y estimar el modelo base (panel con efectos fijos por segmento + interacción desempleo×TPM).</li>
-      <li><span class="tag pend">Pendiente</span> <strong>Semana 4</strong>: robustez (VAR/IV), interpretación económica.</li>
-      <li><span class="tag pend">Pendiente</span> <strong>Semana 5</strong>: documento Word (≤10 páginas) y slides de sustentación (20 min).</li>
+      <li><span class="tag pend">Pendiente</span> <strong>Slides de la sustentación</strong> (20 min, poco texto): usar fig3 (exposición por producto), fig5 (tasa nominal vs. real) y fig6 (ICV por producto) de <code>output/figuras/</code>, que no entraron en el Word.</li>
+      <li><span class="tag pend">Pendiente</span> Completar el nombre del profesor en la portada del Word (quedó como placeholder).</li>
+      <li><span class="tag warn">En duda</span> Confirmar con el profesor si portada y referencias cuentan contra el límite de 10 páginas (el documento queda justo en el borde: 10 páginas de contenido exactas).</li>
+      <li><span class="tag pend">Pendiente</span> ~22 meses de microdatos GEIH por descargar para completar la ventana de ingreso real (la muestra efectiva actual es de 3.712 de 4.416 observaciones posibles).</li>
     </ul>
   </section>
 
@@ -233,16 +232,18 @@ layout: none
         <tr><th>Archivo</th><th>Fuente</th><th>Ventana</th><th>Estado</th></tr>
       </thead>
       <tbody>
-        <tr><td><code>banrep_mensual.csv</code></td><td>BanRep</td><td>2015-01 a 2025-12</td><td>✅ Completo</td></tr>
-        <tr><td><code>sfc_icv_mensual.csv</code></td><td>SFC</td><td>2011-01 a 2023-12</td><td>⚠️ Falta 2024-2025</td></tr>
-        <tr><td><code>dane_mercado_laboral_mensual.csv</code></td><td>DANE-GEIH</td><td>2001-01 a 2025-12</td><td>⚠️ Solo TD/TGP/TO, faltan 5 meses (pandemia)</td></tr>
-        <tr><td><code>panel_calidad_cartera.csv</code></td><td>Consolidado</td><td>2015-01 a 2023-12</td><td>✅ Listo para explorar (acotado por SFC)</td></tr>
+        <tr><td><code>banrep_mensual.csv</code></td><td>BanRep</td><td>2015-01 a 2026-06</td><td>✅ Completo</td></tr>
+        <tr><td><code>sfc_cartera_producto_mensual.csv</code></td><td>SFC</td><td>2015-01 a 2026-06</td><td>✅ Completo, validado contra el ICV oficial</td></tr>
+        <tr><td><code>dane_mercado_laboral_mensual.csv</code></td><td>DANE-GEIH</td><td>2001-01 a 2026-06</td><td>✅ Completo</td></tr>
+        <tr><td><code>geih_ingreso_laboral_mensual.csv</code></td><td>DANE-GEIH (microdatos)</td><td>2015-01 a 2026-06</td><td>⚠️ n=3.712 de 4.416 posibles (faltan ~22 meses de microdatos por descargar)</td></tr>
+        <tr><td><code>panel_calidad_cartera.csv</code></td><td>Consolidado</td><td>2015-01 a 2026-06</td><td>✅ Listo — 32 productos × hasta 138 meses (110.969 filas)</td></tr>
       </tbody>
     </table>
     <div class="note">
-      El panel final tiene <strong>5 segmentos × 108 meses = 540 filas</strong>. Apenas se consiga
-      SFC 2024-2025, solo hay que cambiar <code>FECHA_FIN</code> en <code>src/consolidar_panel.py</code>
-      y volver a correrlo — no hace falta tocar nada más.
+      El panel final es <strong>producto × mes</strong> (32 productos, hasta 138 meses). Los 5
+      modelos y el documento final ya están estimados y escritos sobre esta base — ver
+      <code>src/modelo.py</code> y
+      <code>output/entregable/caso3_ingreso_laboral_calidad_cartera.docx</code>.
     </div>
   </section>
 
@@ -290,37 +291,41 @@ git push -u origin tu-nombre/tarea-corta</pre>
   </section>
 
   <section>
-    <h2><span class="num">5</span> Reparto sugerido de lo que falta</h2>
+    <h2><span class="num">5</span> Resultados clave</h2>
     <div class="grid">
       <div class="card">
-        <h3>🏦 Datos SFC 2024-2025</h3>
-        <p>Buscar y descargar la actualización de calidad de cartera en la web de la SFC; adaptar
-        <code>src/procesar_sfc_calidad_cartera.py</code> si el formato cambió.</p>
+        <h3>📉 Desempleo vs. ingreso real</h3>
+        <p>El desempleo agregado sí es significativo en el modelo de brecha por tramo (p = ,041),
+        pero el canal que discrimina entre deudores de bajos y altos ingresos dentro del mismo
+        producto es la erosión del ingreso laboral real, no la pérdida del empleo.</p>
       </div>
       <div class="card">
-        <h3>👥 Informalidad + ingreso real</h3>
-        <p>Ubicar y descargar anexos GEIHEISS (informalidad) y la fuente de ingreso laboral +
-        IPC del DANE; escribir <code>src/procesar_informalidad_ingreso.py</code>.</p>
+        <h3>💳 La brecha se concentra en tarjeta de crédito</h3>
+        <p>El mismo choque de ingreso real mueve el ICV en consumo sin garantía (−0,235) y en
+        descuento de nómina (−0,024, un orden de magnitud menor) pero es estadísticamente nulo en
+        crédito con garantía real, microcrédito y comercial.</p>
       </div>
       <div class="card">
-        <h3>📊 Estadística descriptiva</h3>
-        <p>Notebook en <code>notebooks/</code> con gráficos exploratorios: NPL por segmento vs.
-        desempleo y TPM, matriz de correlaciones, series de tiempo por segmento.</p>
+        <h3>🏛️ Tres resultados nulos reportados como tales</h3>
+        <p>La moderación por tasa de política no es significativa, el efecto agregado del panel
+        completo es débil, y el ingreso rezagado seis meses no tiene efecto — el canal es
+        contemporáneo, no de rezago largo.</p>
       </div>
       <div class="card">
-        <h3>🧮 Modelo (Semana 3)</h3>
-        <p>Empezar a prototipar el panel dinámico con efectos fijos e interacción
-        desempleo×TPM en <code>src/model.py</code>, apenas el panel esté más completo.</p>
+        <h3>🧮 5 especificaciones + 7 robustez</h3>
+        <p>Panel con efectos fijos de entidad y errores Driscoll-Kraay, brecha por tramo de
+        ingreso, moderación por tasa, VECM agregado con Johansen e IRF, y 7 especificaciones de
+        robustez sobre el efecto agregado — ver <code>src/modelo.py</code>.</p>
       </div>
       <div class="card">
-        <h3>📝 Marco teórico-regulatorio</h3>
-        <p>Medio párrafo por bloque (teoría del ciclo crediticio, normativa SFC, metodología GEIH)
-        para la Sección 2 del entregable (ver <code>PLAN_DE_TRABAJO.md</code>, sección 3).</p>
+        <h3>📄 Documento final</h3>
+        <p>6 secciones, formato APA 7, ecuaciones formales de los 5 modelos, tablas estilo
+        LaTeX/booktabs — <code>output/entregable/caso3_ingreso_laboral_calidad_cartera.docx</code>.</p>
       </div>
       <div class="card">
-        <h3>🎨 Visualización final</h3>
-        <p>Preparar plantilla del Word (≤10 páginas) y de las slides (20 min), a la espera de que
-        Modelación entregue resultados.</p>
+        <h3>🎤 Pendiente: slides</h3>
+        <p>Sustentación de 20 minutos, poco texto, con fig3 (exposición por producto), fig5 (tasa
+        nominal vs. real) y fig6 (ICV por producto) de <code>output/figuras/</code>.</p>
       </div>
     </div>
   </section>
@@ -328,10 +333,11 @@ git push -u origin tu-nombre/tarea-corta</pre>
   <section>
     <h2><span class="num">6</span> Enlaces útiles</h2>
     <ul class="status-list">
+      <li><span class="tag ok">Doc</span> <a href="./output/entregable/caso3_ingreso_laboral_calidad_cartera.docx">output/entregable/caso3_ingreso_laboral_calidad_cartera.docx</a> — entregable final del Caso 3.</li>
       <li><span class="tag ok">Doc</span> <a href="./PLAN_DE_TRABAJO.md">PLAN_DE_TRABAJO.md</a> — hipótesis, metodología y cronograma completo.</li>
       <li><span class="tag ok">Doc</span> <a href="./docs/fuentes_de_datos.md">docs/fuentes_de_datos.md</a> — detalle de fuentes, URLs y registro de descargas.</li>
-      <li><span class="tag ok">Código</span> <code>src/</code> — scripts de descarga y procesamiento.</li>
-      <li><span class="tag ok">Datos</span> <code>data/processed/panel_calidad_cartera.csv</code> — panel listo para explorar.</li>
+      <li><span class="tag ok">Código</span> <code>src/modelo.py</code> — los 5 modelos estimados.</li>
+      <li><span class="tag ok">Datos</span> <code>data/processed/panel_calidad_cartera.csv</code> — panel final producto × mes.</li>
     </ul>
   </section>
 
